@@ -1,6 +1,8 @@
 # Stacky
 
-An interactive pulumi stack selector that remembers the selected stack and working dir
+An interactive pulumi stack selector that remembers the selected stack and working dir.
+
+It will search 3 levels deep from the current dir for Pulumi files - they are expected to be in a *infrastructure dir.
 
 Usage
 
