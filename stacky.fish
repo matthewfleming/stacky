@@ -10,7 +10,7 @@ function stacky -d "Run pulumi with a sticky stack"
         return
     end
     if string match -qr "select|cd" "$argv[1]"
-        find . -ipath './Pulumi.*.yaml' -or -ipath '**/*infrastructure/Pulumi.*.yaml' -maxdepth 3 | while read -l path
+        find . -ipath './Pulumi.*.yaml' -or -ipath '**/*infrastructure/Pulumi.*.yaml' -or -ipath '**/.pulumi/Pulumi.*.yaml' -maxdepth 3 | while read -l path
             set dir (dirname "$path")
             set file (basename "$path" | string sub -s 8 -e -5)
             echo "$file $dir"
