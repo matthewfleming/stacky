@@ -9,7 +9,7 @@ if [ "$1" == "-h" ] || [ "$1" == "--help" ]; then
     echo -e "  [pulumi command]\tRun pulumi command on the selected stack"
     echo -e "  which\t\t\tDisplay selected stack"
 elif [ "$1" == "select" ] || [ "$1" == "cd" ]; then
-    find . -ipath './Pulumi.*.yaml' -or -ipath '**/*infrastructure/Pulumi.*.yaml' -or -ipath '**/.pulumi/Pulumi.*.yaml' -maxdepth 3 | while read -l path
+    find -E . -iregex '.*\/Pulumi\..*\.yaml$' -not -path '**/node_modules/*' -not -path '**/vendor/*' -maxdepth 4 | while read -l path
         echo "$(basename "$path" | sed -e s/Pulumi.// -e s/.yaml//) $(dirname "$path")"
     done >/tmp/stacks_options
     if [ -s /tmp/stacks_options ]; then
